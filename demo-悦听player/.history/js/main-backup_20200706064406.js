@@ -51,7 +51,7 @@ var app = new Vue ({
         searchMusic(){
             axios.get('https://autumnfish.cn/search?keywords='+this.query)
             .then( (response) => {/* 用箭头函数确保this指向，将从接口获取的数据存入musicList中*/
-                 console.log(response);
+                // console.log(response);
                 this.musicList = response.data.result.songs;
                 
             })
@@ -81,7 +81,7 @@ var app = new Vue ({
         //歌曲评论获取 这里有type=0和id两个参数，用&拼接
             axios.get('https://autumnfish.cn/comment/hot?type=0&id='+musicId)
             .then( (response) =>{/*将hotComments里的评论内容传递给参数hosComments */
-                // console.log(response);
+                console.log(response);
                 this.hotComments = response.data.hotComments;
             })
             .catch(function(err){
@@ -95,17 +95,7 @@ var app = new Vue ({
         pause(){
             this.isPlaying = false;
         },
-
-        playMv(mvid){
-            axios.get(':https://autumnfish.cn/mv/url?id='+mvid)
-            .then( (response) => {
-                console.log(mvid);
-                console.log(response);
-            })
-            .catch( function(err){
-
-            })
-        },
+        
     }, 
         
 }).$mount('#player')

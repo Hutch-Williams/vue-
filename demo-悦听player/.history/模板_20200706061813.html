@@ -28,13 +28,12 @@
              <!-- 点击放歌 将item.id作为参数导入到playMusic函数中-->
              <a href="javascript:;" @click="playMusic(item.id)"></a>
               <b>{{ item.name}}</b>
-               <span v-if='item.mvid!=0' @click='playMv(item.mvid)'><i></i></span>
+               <span><i></i></span>
               </li>
           </ul>
           <img src="images/line.png" class="switch_btn" alt="">
         </div>
-        <!-- 歌曲信息容器  这里通过对象的方式设置类名,
-          类名生效与否取决于后面值的真假，对应的动画是在css中写的-->
+        <!-- 歌曲信息容器  这里通过对象的方式设置类名,类名生效与否取决于-->
         <div class="player_con" :class="{playing:isPlaying}">
           <img src="images/player_bar.png" class="play_bar" />
           <!-- 黑胶碟片 将封面的地址绑定musicCover来获取封面地址 -->

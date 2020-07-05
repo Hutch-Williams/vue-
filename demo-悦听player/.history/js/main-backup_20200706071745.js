@@ -51,7 +51,7 @@ var app = new Vue ({
         searchMusic(){
             axios.get('https://autumnfish.cn/search?keywords='+this.query)
             .then( (response) => {/* 用箭头函数确保this指向，将从接口获取的数据存入musicList中*/
-                 console.log(response);
+                // console.log(response);
                 this.musicList = response.data.result.songs;
                 
             })
@@ -62,7 +62,7 @@ var app = new Vue ({
         playMusic(musicId){ /* 这里我们在模板html中用item.id将歌曲的id信息传入 */
             axios.get('https://autumnfish.cn/song/url?id=' +musicId)
             .then( (response) => {/* 用指定id获取对应歌曲的信息，我们发现不同歌曲其实调用的就是不同url*/
-                // console.log(response);
+                console.log(response);
                 this.musicUrl = response.data.data[0].url;/*将不同歌曲的url导入到musicUrl中*/
             })
             .catch(function (err) {
@@ -99,8 +99,7 @@ var app = new Vue ({
         playMv(mvid){
             axios.get(':https://autumnfish.cn/mv/url?id='+mvid)
             .then( (response) => {
-                console.log(mvid);
-                console.log(response);
+                console(response);
             })
             .catch( function(err){
 

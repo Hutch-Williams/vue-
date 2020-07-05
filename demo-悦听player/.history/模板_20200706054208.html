@@ -28,21 +28,19 @@
              <!-- 点击放歌 将item.id作为参数导入到playMusic函数中-->
              <a href="javascript:;" @click="playMusic(item.id)"></a>
               <b>{{ item.name}}</b>
-               <span v-if='item.mvid!=0' @click='playMv(item.mvid)'><i></i></span>
+               <span><i></i></span>
               </li>
           </ul>
           <img src="images/line.png" class="switch_btn" alt="">
         </div>
-        <!-- 歌曲信息容器  这里通过对象的方式设置类名,
-          类名生效与否取决于后面值的真假，对应的动画是在css中写的-->
-        <div class="player_con" :class="{playing:isPlaying}">
+        <!-- 歌曲信息容器 -->
+        <div class="player_con" class="playing">
           <img src="images/player_bar.png" class="play_bar" />
           <!-- 黑胶碟片 将封面的地址绑定musicCover来获取封面地址 -->
           <img src="images/disc.png" class="disc autoRotate" />
           <img :src="musicCover" class="cover autoRotate" />
         </div>
-        <!-- 评论容器 用v-for遍历获取hotComments里的内容并将对应的信息
-          如用户头像等获取后放入指定位置 -->
+        <!-- 评论容器 -->
         <div class="comment_wrapper">
           <h5 class='title'>热门留言</h5>
           <div class='comment_list'>
@@ -59,8 +57,7 @@
       </div>
       <div class="audio_con">
         <!-- 用v-bind缩写' : ' 来绑定musicUrl数据获取url -->
-        <!-- v-on 绑定play事件和pause，并触发js中play和pause函数改变isPlaying布尔值 -->
-        <audio ref='audio' @play='play' @pause='pause'  :src="musicUrl" controls autoplay loop class="myaudio"></audio>
+        <audio ref='audio'  :src="musicUrl" controls autoplay loop class="myaudio"></audio>
       </div>
       <div class="video_con"  style="display: none;">
         <video  controls="controls"></video>

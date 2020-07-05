@@ -99,7 +99,6 @@ var app = new Vue ({
         playMv(mvid){
             axios.get(':https://autumnfish.cn/mv/url?id='+mvid)
             .then( (response) => {
-                console.log(mvid);
                 console.log(response);
             })
             .catch( function(err){
