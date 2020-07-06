@@ -44,6 +44,10 @@ var app = new Vue ({
       hotComments:[],
      //动画播放状态
      isPlaying:false,
+     //遮罩层状态
+     isShow:false,
+     //mv地址
+     mvUrl:'',
     },
 
     methods:{
@@ -62,7 +66,7 @@ var app = new Vue ({
         playMusic(musicId){ /* 这里我们在模板html中用item.id将歌曲的id信息传入 */
             axios.get('https://autumnfish.cn/song/url?id=' +musicId)
             .then( (response) => {/* 用指定id获取对应歌曲的信息，我们发现不同歌曲其实调用的就是不同url*/
-                // console.log(response);
+                 console.log(response);
                 this.musicUrl = response.data.data[0].url;/*将不同歌曲的url导入到musicUrl中*/
             })
             .catch(function (err) {
@@ -97,14 +101,20 @@ var app = new Vue ({
         },
 
         playMv(mvid){
-            axios.get(':https://autumnfish.cn/mv/url?id='+mvid)
-            .then( (response) => {
-                console.log(mvid);
-                console.log(response);
+            axios.get('https://autumnfish.cn/mv/url?id='+ mvid)
+            .then( (response) => {/* 这里用console.log打印不显示结果，所以直接调用数据将url存入mvUrl参数中*/
+                this.isShow = true;/* 改变isShow的状态，让mv呈现 */
+                this.mvUrl = response.data.data.url;
             })
             .catch( function(err){
 
             })
+        },
+        
+        //隐藏
+        hide(){/* 将触发hide函数后，将改变isShow的状态为false，隐藏mv，然后把mvUrl地址清空，防止在隐藏后还在播放mv */
+            this.isShow =false;
+            this.mvUrl='';
         },
     }, 
         

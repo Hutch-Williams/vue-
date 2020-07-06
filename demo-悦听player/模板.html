@@ -62,9 +62,9 @@
         <!-- v-on 绑定play事件和pause，并触发js中play和pause函数改变isPlaying布尔值 -->
         <audio ref='audio' @play='play' @pause='pause'  :src="musicUrl" controls autoplay loop class="myaudio"></audio>
       </div>
-      <div class="video_con"  style="display: none;">
-        <video  controls="controls"></video>
-        <div class="mask" ></div>
+      <div class="video_con"  v-show='isShow' style="display: none;">
+        <video  ref='video' :src='mvUrl' controls="controls"></video>
+        <div class="mask" @click='hide' ></div>
       </div>
     </div>
   </div>
